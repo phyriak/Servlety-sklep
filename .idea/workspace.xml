@@ -21,6 +21,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -36,6 +39,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1WcKiIF3DZwAshdF4Y8onfLTJ92" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -256,6 +260,7 @@
       <workItem from="1581949158158" duration="108000" />
       <workItem from="1582279683682" duration="1282000" />
       <workItem from="1583056068350" duration="803000" />
+      <workItem from="1583953949692" duration="349000" />
     </task>
     <servers />
   </component>
