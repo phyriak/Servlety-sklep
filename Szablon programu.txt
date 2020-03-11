@@ -1,0 +1,30 @@
+Tworzymy tabele:
+- users (id, login : varchar, md5 : varchar, lastLogin: data)
+- products (productID, name, price, index, imageURL, category)
+Tworzymy nag³ówek dla wszystkich stron w sklepie (bêdzie tu nazwa u¿ytkownika, jeœli jest zalogowany i informacja o koszyku)
+Strona startowa:
+ - zaloguj siê
+ - utwórz konto
+ - zobacz cennik
+Formularz logowania
+O filtrze zapominamy do czasu utworzenia strony tworz¹cej konto
+Filtr dla serwletu waliduj
+    select * from users where login = $login
+    jest rs > 0 to filtr powracaj¹cy do formularza z info: user already exists! try different login name
+Serwlet waliduj
+  - doGet - ona przepuœci nas dalej na stronê products.jsp pod warunkiem, ¿e checkPassword == true
+  - checkPassword, która dostaje login z formularza i Md5 wyliczone w metodzie makeMD5(password) i nawi¹zuje po³¹czenie z baz¹
+    select * from users where login = $login AND md5 = $md5
+    tworzenie sesji dla u¿ytkownika w postaci zmiennej z loginem
+    tworzenie zmiennej sesyjnej z liczb¹ towarów w koszyku (ustawiane na pocz¹tku na 0)
+    zmienna 'koszyk' jak HashMap<productID, liczba sztuk : int> (zmienna sesyjna, koszyk jest pusty)
+    ale jeœli jest ciasteczko z kluczem 'login' to koszyk jest odtwarzany z ciasteczka
+Stronê products.jsp
+  - wyœwietla listê kategorii wpisan¹ w formularz na sta³e (robi to w formularzu)
+  - na stronie products.jsp wyœwietlane s¹ produkty w paczkach po 10 (products.jsp?page = 1)
+  - na dole strony mamy przyciski: next i prev (jeœli jest to logiczne)
+  - przyciski dodajDoKoszyka powoduj¹ przekierowanie do serwletu aktualizuj¹cego koszyk i serwlet wraca na stronê products.jsp, z której przyszed³
+  serwlet tworzy ciasteczko z kluczem 'login', a wartoœæ to zserializowana mapa z koszykiem (ciasteczko ma ¿yæ na 24 godziny)
+Strona showCart - pokazuje szczegó³y zawartoœci koszyka (nazwa towaru, index, cena, wartoœæ = cena* liczba sztuk)
+  - mamy tyle zapytañ do tabeli 'products' ile produktów jest w koszyku
+  - w formularzu z produktami w koszyku s¹ przyciski: zmieñ, usuñ
